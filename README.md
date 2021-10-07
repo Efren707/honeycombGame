@@ -7,3 +7,4 @@ The game will have 4 levels increasing in difficulty of the shape that needs to 
 I plan on using MouseEvent, PointerLock, and PointerEvent API for a majority of the game functionality.
 These APIs handle a lot of the mouse functions that will be needed for the game to function such as when a user has clicked to start the game.
 It also allows to track the coordinates of the mouse pointer and the shapes border.
+![image](https://user-images.githubusercontent.com/53492872/136470506-d0a048f5-f1bb-41af-b255-c9d6fe2f4397.png)
