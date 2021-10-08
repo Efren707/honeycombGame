@@ -37,4 +37,3 @@ Make game look better
 Thursday
 Submit project
 
-https://docs.google.com/spreadsheets/d/1jX_ZmDHCWAOULwNzseX_TAU7gAiY3r1FFp2pqAApSmM/edit#gid=80636460
