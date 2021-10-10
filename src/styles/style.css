@@ -1,0 +1,27 @@
+@font-face { font-family: azonix; src: url('Azonix.otf'); } 
+@font-face { font-family: azonix; font-weight: bold; src: url('Azonix.otf');}
+
+body{
+    font-family: azonix, sans-serif;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+
+body h1 {
+    padding: 10px;
+    font-size: 80px;
+    color: yellow;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+}
+
+canvas {
+    box-sizing: content-box;
+    border: 8px solid black;
+}
