@@ -25,3 +25,26 @@ canvas {
     box-sizing: content-box;
     border: 8px solid black;
 }
+
+#tracker {
+    color: white;
+    position: absolute;
+	bottom: 0;
+	left: 20px;
+	background-color: black;
+}
+
+#nav {
+	position: absolute;
+	top: 0;
+	right: 20px;
+	background-color: transparent;
+}
+a {
+    color: blue;
+    font-size:30px;
+}
+
+a:hover {
+    color: purple;
+}
