@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let x = 300;
     let y = 200;
-    const RADIUS = 1;
+    const RADIUS = 7;
     
     function canvasDraw(){
         // Green game square
@@ -38,14 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
         c.fill();
 
         // triangle
-        c.beginPath();
-        c.moveTo(180, 460);
-        c.lineTo(300, 190);
-        c.lineTo(430, 460);
-        c.closePath();
-        c.lineWidth = 30;
-        c.strokeStyle = "#b0881a";
-        c.stroke();
+        // c.beginPath();
+        // c.moveTo(180, 460);
+        // c.lineTo(300, 190);
+        // c.lineTo(430, 460);
+        // c.closePath();
+        // c.lineWidth = 30;
+        // c.strokeStyle = "#b0881a";
+        // c.stroke();
 
         // square
         // c.lineWidth = 25;
@@ -128,9 +128,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     function insideTriangle(x, y){
-        let outterLeft = [];
-        let outterRight = [];
-        let outterBottom = 475;
+        function outterLeft(x) {
+            return Math.floor(((-294 / 131) * x) + (110863 / 131));
+        }; 
+
+        function outterRight(x) {
+            return Math.floor(((98 / 47) * x) - (21269 / 47));
+        };
+
+        function innerLeft(x){
+            return Math.floor(((11/-5)*x) + 877);
+        }
+
+        function innerRight(x) {
+            return Math.floor(((231 / 113) * x) - (44779 / 113));
+        }
+
+        let outterBottom = 469;
+        let innerBottom = 452;
+
+        if (outterLeft(x) === y - 1 || outterLeft(x) === y || outterLeft(x) === y + 1 ){
+            return true;
+        }
+
+        if (outterRight(x) === y - 1 || outterRight(x) === y ){
+            return true;
+        }
+
+        if(outterBottom === y){
+            return true;
+        }
+
+        if(x < 300 && x > 205 && y > 217 && y < 453){
+            if (innerLeft(x) === y || innerLeft(x) === 1 + y || innerLeft(x) === 1 - y) {
+                return true;
+            }
+        }
+
+        if (x > 300 && x < 413 && y > 217 && y < 453) {
+            if (innerRight(x) === y || innerRight(x) === 1 + y || innerRight(x) === 1 - y) {
+                return true;
+            }
+        }
+
+        if(x > 195 && x < 413 && y === innerBottom){
+            return true;
+        }
     }
     
     
