@@ -21,12 +21,12 @@ body h1 {
     -webkit-text-stroke-color: black;
 }
 
-canvas {
+#gameScreen {
     box-sizing: content-box;
     border: 8px solid black;
 }
 
-#tracker {
+#mouseTracker {
     color: white;
     position: absolute;
 	bottom: 0;
