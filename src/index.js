@@ -5,8 +5,8 @@ let canvas = document.getElementById('gameScreen');
 let c = canvas.getContext('2d');
 const GAME_WIDTH = 600;
 const GAME_HEIGHT = 600;
-let x = 287;
-let y = 210;
+let x = 30;
+let y = 570;
 
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 let tracker = new Tracker(x, y);

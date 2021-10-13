@@ -3,7 +3,7 @@ export default class Game {
     constructor(gameWidth, gameHeight){
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
-        this.currentLevel = 1;
+        this.currentLevel = 0;
         this.health = 100;
     }
 
@@ -20,8 +20,8 @@ export default class Game {
         c.stroke();
         c.fillStyle = 'black';
         c.font = '23px azonix';
-        c.fillText('Level: ' + this.currentLevel, 20, 40 )
-        c.fillText('Health: ' + this.health + '%', 20, 80);
+        c.fillText('Level: ' + this.currentLevel, 65, 40);
+        c.fillText('Health: ' + this.health + '%', 100, 80);
 
         //Pan
         c.beginPath();
@@ -38,7 +38,39 @@ export default class Game {
         c.fillStyle = "#ebd142"
         c.fill();
 
-        if (this.currentLevel === 1){
+        if (this.currentLevel === 0){
+            c.rect(0, 0, this.gameWidth, this.gameHeight);
+            c.fillStyle = "rgba(0,0,0,1)";
+            c.fill();
+
+            c.font = "20px azonix";
+            c.fillStyle = "yellow";
+            c.textAlign = "center";
+            c.fillText("Instructions", 300, 25);
+            c.fillText("Stay within the borders of the shape", 300, 60);
+            c.fillText("To pass level hover over the blue dot", 300, 90);
+            c.fillText("Make it through all 4 levels to win", 300, 120);
+            c.fillStyle = "orange";
+            c.fillText("Click and hover over blue dot to start", 300, 150);
+            c.fillStyle = "yellow";
+            c.fillText("If you cross the       line you lose", 300, 290);
+            c.fillStyle = "red";
+            c.fillText("red", 325, 290);
+            c.fillStyle = "yellow";
+            c.font = "19px azonix";
+            c.fillText("Touch the shape border your health diminishes", 300, 320);
+            c.font = "20px azonix";
+            c.fillText("If your health reaches    you lose", 300, 350);
+            c.fillStyle = "red";
+            c.fillText("0", 395, 350);
+
+            c.fillStyle = "blue";
+            c.beginPath();
+            c.arc(287, 210, 7, 0, Math.PI * 2, false);
+            c.fill();
+        } else if(this.currentLevel === 1){
+            
+
             c.beginPath();
             c.moveTo(180, 460);
             c.lineTo(300, 190);
@@ -61,6 +93,8 @@ export default class Game {
             c.arc(312, 210, 7, 0, Math.PI * 2, false);
             c.fill();
         } else if(this.currentLevel === 2){
+            
+
             // square
             c.lineWidth = 25;
             c.strokeStyle = "#b0881a";
@@ -79,6 +113,8 @@ export default class Game {
             c.arc(312, 220, 7, 0, Math.PI * 2, false);
             c.fill();
         } else if(this.currentLevel === 3){
+            
+
             // circle
             c.beginPath();
             c.arc(300, 350, 170, 0, Math.PI * 2, false);
@@ -99,6 +135,9 @@ export default class Game {
             c.arc(315, 180, 7, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 4) {
+            
+
+            //star
             let cx = 300;
             let cy = 350;
             let spikes = 5;
@@ -166,6 +205,54 @@ export default class Game {
                 this.gameWidth / 2,
                 this.gameHeight / 2
             );
+        } else if (this.currentLevel === 7) {
+            c.rect(0, 0, this.gameWidth, this.gameHeight);
+            c.fillStyle = "rgba(0,0,0,1)";
+            c.fill();
+
+            c.font = "60px azonix";
+            c.fillStyle = "#219e66";
+            c.textAlign = "center";
+            c.fillText("LEVEL 1 PASSED", this.gameWidth / 2, 120);
+            c.font = "20px azonix";
+            c.fillText("Hover over blue dot to continue", this.gameWidth / 2, 160);
+
+            c.fillStyle = "blue";
+            c.beginPath();
+            c.arc(285, 220, 7, 0, Math.PI * 2, false);
+            c.fill();
+        } else if (this.currentLevel === 8) {
+            c.rect(0, 0, this.gameWidth, this.gameHeight);
+            c.fillStyle = "rgba(0,0,0,1)";
+            c.fill();
+
+            c.font = "60px azonix";
+            c.fillStyle = "#219e66";
+            c.textAlign = "center";
+            c.fillText("LEVEL 2 PASSED", this.gameWidth / 2, 120);
+            c.font = "20px azonix";
+            c.fillText("Hover over blue dot to continue", this.gameWidth / 2, 160);
+
+            c.fillStyle = "blue";
+            c.beginPath();
+            c.arc(282, 180, 7, 0, Math.PI * 2, false);
+            c.fill();
+        } else if (this.currentLevel === 9) {
+            c.rect(0, 0, this.gameWidth, this.gameHeight);
+            c.fillStyle = "rgba(0,0,0,1)";
+            c.fill();
+
+            c.font = "60px azonix";
+            c.fillStyle = "#219e66";
+            c.textAlign = "center";
+            c.fillText("LEVEL 3 PASSED", this.gameWidth / 2, 120);
+            c.font = "20px azonix";
+            c.fillText("Hover over blue dot to continue", this.gameWidth / 2, 160);
+
+            c.fillStyle = "blue";
+            c.beginPath();
+            c.arc(287, 235, 7, 0, Math.PI * 2, false);
+            c.fill();
         }
     }
 
@@ -465,6 +552,11 @@ export default class Game {
     }
 
     hitCheck(x, y){
+        // Menu screen
+        if (this.currentLevel === 0 && y === 210 && (x === 288 || x === 287)){
+            this.currentLevel++;
+        }
+
         // Level 1
         if(this.currentLevel === 1 && this.insideTriangle(x,y)){
             this.health--;
@@ -473,8 +565,8 @@ export default class Game {
         }
 
         if (this.currentLevel === 1 && x === 312 && y === 210 && this.health > 0) {
-            this.health += 20;
-            this.currentLevel++;
+            // this.health += 10;
+            this.currentLevel = 7;
         }
 
         // Level 2
@@ -485,8 +577,8 @@ export default class Game {
         }
 
         if (this.currentLevel === 2 && x === 312 && y === 220 && this.health > 0) {
-            this.health += 20;
-            this.currentLevel++;
+            // this.health += 10;
+            this.currentLevel = 8;
         }
 
         // Level 3
@@ -497,8 +589,8 @@ export default class Game {
         }
 
         if (this.currentLevel === 3 && x === 315 && y === 180 && this.health > 0) {
-            this.health += 20;
-            this.currentLevel++;
+            // this.health += 10;
+            this.currentLevel = 9;
         }
 
         // Level 4
@@ -509,14 +601,29 @@ export default class Game {
         }
 
         if (this.currentLevel === 4 && x === 313 && y === 234 && this.health > 0) {
-            this.health += 20;
+            // this.health += 10;
             this.currentLevel++;
         }
 
+        // Lose
         if(this.health <= 0){
             this.currentLevel = 6;
         }
 
+        // Level 1 passed
+        if (this.currentLevel === 7 && y === 220 && (x === 285 || x === 286)){
+            this.currentLevel = 2;
+        }
+
+        // Level 2 passed
+        if (this.currentLevel === 8 && y === 180 && (x === 282 || x === 283)) {
+            this.currentLevel = 3;
+        }
+
+        // Level 3 passed
+        if (this.currentLevel === 9 && y === 235 && (x === 287 || x === 288)) {
+            this.currentLevel = 4;
+        }
     }
 
     
