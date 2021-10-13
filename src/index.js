@@ -1,14 +1,16 @@
-import Tracker from '/src/tracker.js';
-
+import Game from "/src/game.js";
+import Tracker from "/src/tracker.js";
 
 let canvas = document.getElementById('gameScreen');
 let c = canvas.getContext('2d');
 const GAME_WIDTH = 600;
 const GAME_HEIGHT = 600;
-let Xpos = 300;
-let Ypos = 300;
+let x = 287;
+let y = 234;
 
-// Start/Stop pointer lock
+let game = new Game(GAME_WIDTH, GAME_HEIGHT);
+let tracker = new Tracker(x, y);
+
 canvas.requestPointerLock = canvas.requestPointerLock ||
     canvas.mozRequestPointerLock;
 
@@ -17,7 +19,7 @@ document.exitPointerLock = document.exitPointerLock ||
 
 canvas.onclick = function () {
     canvas.requestPointerLock();
-}; 
+};
 
 // Hook pointer lock state change events for different browsers
 document.addEventListener('pointerlockchange', lockChangeAlert, false);
@@ -32,28 +34,22 @@ function lockChangeAlert() {
         console.log('The pointer lock status is now unlocked');
         document.removeEventListener("mousemove", updatePosition, false);
     }
-};
-
-let tracker = new Tracker(Xpos, Ypos);
-tracker.draw(c);
-
-let mouseTracker = document.getElementById('mouseTracker');
-let animation;
-
-function updatePosition(e) {
-    Xpos += e.movementX;
-    Ypos += e.movementY;
-
-    mouseTracker.textContent = "X position: " + Xpos + ", Y position: " + Ypos;
-
-    if (!animation) {
-        animation = requestAnimationFrame(function () {
-            animation = null;
-            c.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-            tracker.update(Xpos, Ypos);
-            tracker.draw(c);
-        });
-    }
-    
 }
 
+let mouseTracker = document.getElementById('mouseTracker');
+function updatePosition(e){
+    x += e.movementX;
+    y += e.movementY;
+    mouseTracker.textContent = "X position: " + x + ", Y position: " + y;
+}
+
+function gameLoop() {
+    c.clearRect(0, 0, 600, 600);
+    game.draw(c);
+    game.hitCheck(x, y);
+    tracker.updatePos(x, y);
+    tracker.draw(c);
+    requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);
