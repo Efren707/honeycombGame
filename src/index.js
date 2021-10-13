@@ -37,6 +37,7 @@ function lockChangeAlert() {
 }
 
 let mouseTracker = document.getElementById('mouseTracker');
+
 function updatePosition(e){
     x += e.movementX;
     y += e.movementY;
