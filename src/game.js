@@ -4,7 +4,7 @@ export default class Game {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
         this.currentLevel = 1;
-        this.health = 100;  
+        this.health = 100;
     }
 
     draw(c){
@@ -150,6 +150,19 @@ export default class Game {
             c.textAlign = "center";
             c.fillText(
                 "YOU WIN ! ! !",
+                this.gameWidth / 2,
+                this.gameHeight / 2
+            );
+        } else if (this.currentLevel === 6) {
+            c.rect(0, 0, this.gameWidth, this.gameHeight);
+            c.fillStyle = "rgba(0,0,0,1)";
+            c.fill();
+
+            c.font = "60px azonix";
+            c.fillStyle = "red";
+            c.textAlign = "center";
+            c.fillText(
+                "YOU LOSE",
                 this.gameWidth / 2,
                 this.gameHeight / 2
             );
@@ -498,6 +511,10 @@ export default class Game {
         if (this.currentLevel === 4 && x === 313 && y === 234 && this.health > 0) {
             this.health += 20;
             this.currentLevel++;
+        }
+
+        if(this.health <= 0){
+            this.currentLevel = 6;
         }
 
     }
