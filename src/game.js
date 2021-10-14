@@ -9,6 +9,7 @@ export default class Game {
         this.health = 100;
         this.sound = new Sound("song.mp3");
         this.shot = new Sound('gunshot.mp3');
+        this.winSound = new Sound('winsound.mp3');
     }
 
     draw(c){
@@ -50,6 +51,18 @@ export default class Game {
             this.sound.play();
         } else {
             this.sound.stop();
+        }
+
+        if(this.currentLevel === 6){
+            this.shot.play();
+        } else {
+            this.shot.stop();
+        }
+
+        if (this.currentLevel === 5) {
+            this.winSound.play();
+        } else {
+            this.winSound.stop();
         }
 
         //menu loading screen
@@ -634,7 +647,6 @@ export default class Game {
         // Losing screen
         if(this.health <= 0){
             this.currentLevel = 6;
-            this.shot.play();
         }
 
         //starts level 1 
