@@ -16,4 +16,5 @@ export default class Tracker {
         c.arc(this.x, this.y, 7, 0, Math.PI * 2, false);
         c.fill();
     }
+    
 } 

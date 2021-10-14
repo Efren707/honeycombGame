@@ -1,3 +1,5 @@
+import Sound from "./sound.js";
+
 export default class Game {
 
     constructor(gameWidth, gameHeight){
@@ -5,6 +7,8 @@ export default class Game {
         this.gameWidth = gameWidth;
         this.currentLevel = 0;
         this.health = 100;
+        this.sound = new Sound("song.mp3");
+        this.shot = new Sound('gunshot.mp3');
     }
 
     draw(c){
@@ -41,6 +45,12 @@ export default class Game {
         c.fillStyle = "#ebd142"
         c.fill();
 
+        if(this.currentLevel > 0 && this.currentLevel < 5){
+            this.sound.play();
+        } else {
+            this.sound.stop();
+        }
+
         if (this.currentLevel === 0){
             c.rect(0, 0, this.gameWidth, this.gameHeight);
             c.fillStyle = "rgba(0,0,0,1)";
@@ -75,8 +85,6 @@ export default class Game {
             c.arc(287, 210, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if(this.currentLevel === 1){
-            
-
             c.beginPath();
             c.moveTo(180, 460);
             c.lineTo(300, 190);
@@ -99,8 +107,6 @@ export default class Game {
             c.arc(312, 210, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if(this.currentLevel === 2){
-            
-
             // square
             c.lineWidth = 25;
             c.strokeStyle = "#b0881a";
@@ -119,8 +125,6 @@ export default class Game {
             c.arc(312, 220, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if(this.currentLevel === 3){
-            
-
             // circle
             c.beginPath();
             c.arc(300, 350, 170, 0, Math.PI * 2, false);
@@ -141,8 +145,6 @@ export default class Game {
             c.arc(315, 180, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 4) {
-            
-
             //star
             let cx = 300;
             let cy = 350;
@@ -186,22 +188,22 @@ export default class Game {
             c.arc(313, 234, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 5){
-            c.rect(0, 0, this.gameWidth, this.gameHeight);
-            c.fillStyle = "rgba(0,0,0,1)";
-            c.fill();
             
+            let piggy = document.getElementById('piggy');
+            c.drawImage(piggy, 0, 0)
+            c.fillStyle = 'black';
+            c.fillRect(70, 330, 470, 100);
             c.font = "60px azonix";
             c.fillStyle = "yellow";
             c.textAlign = "center";
             c.fillText(
                 "YOU WIN ! ! !",
                 this.gameWidth / 2,
-                this.gameHeight / 2
+                400
             );
         } else if (this.currentLevel === 6) {
-            c.rect(0, 0, this.gameWidth, this.gameHeight);
-            c.fillStyle = "rgba(0,0,0,1)";
-            c.fill();
+            let maskedMan = document.getElementById('maskedMan');
+            c.drawImage(maskedMan, 0, 0)
 
             c.font = "60px azonix";
             c.fillStyle = "red";
@@ -620,6 +622,7 @@ export default class Game {
         // Lose
         if(this.health <= 0){
             this.currentLevel = 6;
+            this.shot.play();
         }
 
         if(this.currentLevel === 6 && x > 272 && x < 303 && y < 226 && y > 194){
