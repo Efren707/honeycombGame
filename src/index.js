@@ -6,12 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let c = canvas.getContext('2d');
     const GAME_WIDTH = 600;
     const GAME_HEIGHT = 600;
+    // tracker spawn location
     let x = 30;
     let y = 570;
 
     let game = new Game(GAME_WIDTH, GAME_HEIGHT);
     let tracker = new Tracker(x, y);
 
+    //Add pointer lock to canvas screen
     canvas.requestPointerLock = canvas.requestPointerLock ||
         canvas.mozRequestPointerLock;
 
@@ -37,14 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // tracker for current mouse position
     let mouseTracker = document.getElementById('mouseTracker');
-
     function updatePosition(e){
         x += e.movementX;
         y += e.movementY;
         mouseTracker.textContent = "X position: " + x + ", Y position: " + y;
     }
 
+    //game animation loop
     function gameLoop() {
         c.clearRect(0, 0, 600, 600);
         game.draw(c);

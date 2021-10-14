@@ -45,12 +45,14 @@ export default class Game {
         c.fillStyle = "#ebd142"
         c.fill();
 
+        // adds game sound
         if(this.currentLevel > 0 && this.currentLevel < 5){
             this.sound.play();
         } else {
             this.sound.stop();
         }
 
+        //menu loading screen
         if (this.currentLevel === 0){
             c.rect(0, 0, this.gameWidth, this.gameHeight);
             c.fillStyle = "rgba(0,0,0,1)";
@@ -84,7 +86,8 @@ export default class Game {
             c.beginPath();
             c.arc(287, 210, 9, 0, Math.PI * 2, false);
             c.fill();
-        } else if(this.currentLevel === 1){
+        } else if(this.currentLevel === 1){ // first level triangle
+            //triangle shape
             c.beginPath();
             c.moveTo(180, 460);
             c.lineTo(300, 190);
@@ -94,6 +97,7 @@ export default class Game {
             c.strokeStyle = "#b0881a";
             c.stroke();
 
+            //red boundary line for triangle
             c.beginPath();
             c.moveTo(300, 225);
             c.lineTo(300, 155);
@@ -102,6 +106,7 @@ export default class Game {
             c.strokeStyle = "red";
             c.stroke();
 
+            //end location for triangle
             c.fillStyle = "blue";
             c.beginPath();
             c.arc(312, 210, 9, 0, Math.PI * 2, false);
@@ -112,6 +117,7 @@ export default class Game {
             c.strokeStyle = "#b0881a";
             c.strokeRect(180, 220, 245, 245);
 
+            //red boundary line for square
             c.beginPath();
             c.moveTo(300, 231);
             c.lineTo(300, 210);
@@ -120,6 +126,7 @@ export default class Game {
             c.strokeStyle = "red";
             c.stroke();
 
+            //end location for square
             c.fillStyle = "blue";
             c.beginPath();
             c.arc(312, 220, 9, 0, Math.PI * 2, false);
@@ -132,6 +139,7 @@ export default class Game {
             c.strokeStyle = "#b0881a";
             c.stroke();
 
+            //red boundary line for circle
             c.beginPath();
             c.moveTo(300, 195);
             c.lineTo(300, 165);
@@ -140,6 +148,7 @@ export default class Game {
             c.strokeStyle = "red";
             c.stroke();
 
+            //end location for circle
             c.fillStyle = "blue";
             c.beginPath();
             c.arc(315, 180, 9, 0, Math.PI * 2, false);
@@ -156,6 +165,7 @@ export default class Game {
             let sy = cy;
             let step = Math.PI / spikes;
 
+            //adds star diagonal lines
             c.beginPath();
             c.moveTo(cx, cy - outerRadius)
             for (let i = 0; i < spikes; i++) {
@@ -175,6 +185,7 @@ export default class Game {
             c.strokeStyle = '#b0881a';
             c.stroke();
 
+            //red boundary line for star
             c.beginPath();
             c.moveTo(300, 235);
             c.lineTo(300, 168);
@@ -183,12 +194,13 @@ export default class Game {
             c.strokeStyle = "red";
             c.stroke();
 
+            //end location for star
             c.fillStyle = "blue";
             c.beginPath();
             c.arc(313, 234, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 5){
-            
+            //display winning screen
             let piggy = document.getElementById('piggy');
             c.drawImage(piggy, 0, 0)
             c.fillStyle = 'black';
@@ -202,6 +214,7 @@ export default class Game {
                 400
             );
         } else if (this.currentLevel === 6) {
+            //displays losing screen
             let maskedMan = document.getElementById('maskedMan');
             c.drawImage(maskedMan, 0, 0)
 
@@ -220,6 +233,7 @@ export default class Game {
             c.arc(287, 210, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 7) {
+            //level 2 loading screen
             c.rect(0, 0, this.gameWidth, this.gameHeight);
             c.fillStyle = "rgba(0,0,0,1)";
             c.fill();
@@ -236,6 +250,7 @@ export default class Game {
             c.arc(285, 220, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 8) {
+            //level 3 loading screen
             c.rect(0, 0, this.gameWidth, this.gameHeight);
             c.fillStyle = "rgba(0,0,0,1)";
             c.fill();
@@ -252,6 +267,7 @@ export default class Game {
             c.arc(282, 180, 9, 0, Math.PI * 2, false);
             c.fill();
         } else if (this.currentLevel === 9) {
+            //level 4 loading screen
             c.rect(0, 0, this.gameWidth, this.gameHeight);
             c.fillStyle = "rgba(0,0,0,1)";
             c.fill();
@@ -345,212 +361,212 @@ export default class Game {
 
     insideStar = function (x, y) {
 
-    // Upper Straight Left #2
-    if (x < 265 && x > 118 && y < 299) {
-        return true;
-    }
-
-    // Inner Straight Left #2
-    if (x < 281 && x > 184 && y === 308) {
-        return true;
-    }
-
-    // Upper Top Left #1
-    function upperTopLeft(x) {
-        return Math.floor(((121 / -40) * x) + (8765 / 8));
-    }
-
-    if (x < 300 && x > 265 && y < 299) {
-        if (upperTopLeft(x) === y || upperTopLeft(x) > y - 1) {
+        // Upper Straight Left #2
+        if (x < 265 && x > 118 && y < 299) {
             return true;
         }
-    }
 
-    // Inner Top Left #1
-    function innerTopLeft(x) {
-        return Math.floor(((38 / -13) * x) + (14175 / 13));
-    }
-
-    if (x < 294 && x > 269 && y > 231 && y < 307) {
-        if (innerTopLeft(x) === y || innerTopLeft(x) === y - 1) {
+        // Inner Straight Left #2
+        if (x < 281 && x > 184 && y === 308) {
             return true;
         }
-    }
 
-    // Upper Straight Right #9
-    if (x < 482 && x > 335 && y < 299) {
-        return true;
-    }
+        // Upper Top Left #1
+        function upperTopLeft(x) {
+            return Math.floor(((121 / -40) * x) + (8765 / 8));
+        }
 
-    // Inner Straight Right #9
-    if (x < 417 && x > 319 && y === 308) {
-        return true;
-    }
+        if (x < 300 && x > 265 && y < 299) {
+            if (upperTopLeft(x) === y || upperTopLeft(x) > y - 1) {
+                return true;
+            }
+        }
 
-    // Upper Top Right #10
-    function upperTopRight(x) {
-        return Math.floor(((100 / 33) * x) - (23797 / 33));
-    }
+        // Inner Top Left #1
+        function innerTopLeft(x) {
+            return Math.floor(((38 / -13) * x) + (14175 / 13));
+        }
 
-    if (x > 300 && x < 334 & y > 191 && y < 291) {
-        if (upperTopRight(x) === y || upperTopRight(x) > y - 1) {
+        if (x < 294 && x > 269 && y > 231 && y < 307) {
+            if (innerTopLeft(x) === y || innerTopLeft(x) === y - 1) {
+                return true;
+            }
+        }
+
+        // Upper Straight Right #9
+        if (x < 482 && x > 335 && y < 299) {
             return true;
         }
-    }
 
-    // Inner Top Right #10
-    function innerTopRight(x) {
-        return Math.floor(((74 / 25) * x) - (16918 / 25));
-    }
-
-    if (x > 307 && x < 332 & y > 232 && y < 306) {
-        if (innerTopRight(x) === y || innerTopRight(x) === y - 1) {
+        // Inner Straight Right #9
+        if (x < 417 && x > 319 && y === 308) {
             return true;
         }
-    }
 
-    // Top of star
-    if (x === 300 && y === 228) {
-        return true;
-    }
+        // Upper Top Right #10
+        function upperTopRight(x) {
+            return Math.floor(((100 / 33) * x) - (23797 / 33));
+        }
 
-    // // Upper Down Left #3
-    function upperDownLeft(x) {
-        return Math.floor(((65 / 89) * x) + (17145 / 89));
-    }
+        if (x > 300 && x < 334 & y > 191 && y < 291) {
+            if (upperTopRight(x) === y || upperTopRight(x) > y - 1) {
+                return true;
+            }
+        }
 
-    if (x > 147 && x < 236 && y < 365 && y > 300) {
-        if (upperDownLeft(x) < y - 2) {
+        // Inner Top Right #10
+        function innerTopRight(x) {
+            return Math.floor(((74 / 25) * x) - (16918 / 25));
+        }
+
+        if (x > 307 && x < 332 & y > 232 && y < 306) {
+            if (innerTopRight(x) === y || innerTopRight(x) === y - 1) {
+                return true;
+            }
+        }
+
+        // Top of star
+        if (x === 300 && y === 228) {
             return true;
         }
-    }
 
-    // Inner Down Left #3
-    function innerDownLeft(x) {
-        return Math.floor(((45 / 61) * x) + (11182 / 61));
-    }
+        // // Upper Down Left #3
+        function upperDownLeft(x) {
+            return Math.floor(((65 / 89) * x) + (17145 / 89));
+        }
 
-    if (x > 188 && x < 249 && y < 367 && y > 322) {
-        if (innerDownLeft(x) === y + 1) {
+        if (x > 147 && x < 236 && y < 365 && y > 300) {
+            if (upperDownLeft(x) < y - 2) {
+                return true;
+            }
+        }
+
+        // Inner Down Left #3
+        function innerDownLeft(x) {
+            return Math.floor(((45 / 61) * x) + (11182 / 61));
+        }
+
+        if (x > 188 && x < 249 && y < 367 && y > 322) {
+            if (innerDownLeft(x) === y + 1) {
+                return true;
+            }
+        }
+
+        // Upper Up Left #4
+        function upperUpLeft(x) {
+            return Math.floor(((-116 / 37) * x) + (41599 / 37));
+        }
+
+        if (x > 202 && x < 239 && y < 491 && y > 375) {
+            if (upperUpLeft(x) > y) {
+                return true;
+            }
+        }
+
+        // Inner Up Left #4
+        function innerUpLeft(x) {
+            return Math.floor(((-19 / 6) * x) + (2311 / 2));
+        }
+
+        if (x > 225 && x < 249 && y < 443 && y > 367) {
+            if (innerUpLeft(x) === y || innerUpLeft(x) === y - 2 || innerUpLeft(x) === y - 1) {
+                return true;
+            }
+        }
+
+        // Upper In Left #5
+        function upperInLeft(x) {
+            return Math.floor(((-71 / 99) * x) + (20719 / 33));
+        }
+
+        if (x > 195 && x < 294 && y < 488 && y > 417) {
+            if (upperInLeft(x) < y) {
+                return true;
+            }
+        }
+
+        // Inner In Left #5
+        function innerInLeft(x) {
+            return Math.floor(((-45 / 62) * x) + (19274 / 31));
+        }
+
+        if (x > 238 && x < 300 && y < 449 && y > 404) {
+            if (innerInLeft(x) === y) {
+                return true;
+            }
+        }
+
+        // Bottom of star
+        if (x === 300 && y === 404) {
             return true;
         }
-    }
 
-    // Upper Up Left #4
-    function upperUpLeft(x) {
-        return Math.floor(((-116 / 37) * x) + (41599 / 37));
-    }
+        // Upper In Right #6
+        function upperInRight(x) {
+            return Math.floor(((65 / 89) * x) + (17158 / 89));
+        }
 
-    if (x > 202 && x < 239 && y < 491 && y > 375) {
-        if (upperUpLeft(x) > y) {
-            return true;
+        if (x > 307 && x < 396 && y < 482 && y > 417) {
+            if (upperInRight(x) < y - 1) {
+                return true;
+            }
+        }
+
+        // Inner In Right #6
+        function innerInRight(x) {
+            return Math.floor(((45 / 62) * x) + (5774 / 31));
+        }
+
+        if (x > 300 && x < 362 && y < 449 && y > 404) {
+            if (innerInRight(x) === y) {
+                return true;
+            }
+        }
+
+        // Upper Up Right #7
+        function upperUpRight(x) {
+            return Math.floor(((105 / 34) * x) - (12596 / 17));
+        }
+
+        if (x > 362 && x < 396 && y < 482 && y > 377) {
+            if (upperUpRight(x) === y || upperUpRight(x) > y + 1) {
+                return true;
+            }
+        }
+
+        // Inner Up Right #7
+        function innerUpRight(x) {
+            return Math.floor(((72 / 23) * x) - (16831 / 23));
+        }
+
+        if (x > 351 && x < 374 && y < 439 && y > 367) {
+            if (innerUpRight(x) === y || innerUpRight(x) === y - 1) {
+                return true;
+            }
+        }
+
+        // Upper Down Right #8
+        function upperDownRight(x) {
+            return Math.floor(((-65 / 88) * x) + (27955 / 44));
+        }
+
+        if (x > 366 && x < 454 && y < 365 && y > 300) {
+            if (upperDownRight(x) < y) {
+                return true;
+            }
+        }
+
+        // Inner Down Right #8
+        function innerDownRight(x) {
+            return Math.floor(((-23 / 31) * x) + (19450 / 31));
+        }
+
+        if (x > 351 && x < 413 && y < 367 && y > 321) {
+            if (innerDownRight(x) === y + 1) {
+                return true;
+            }
         }
     }
-
-    // Inner Up Left #4
-    function innerUpLeft(x) {
-        return Math.floor(((-19 / 6) * x) + (2311 / 2));
-    }
-
-    if (x > 225 && x < 249 && y < 443 && y > 367) {
-        if (innerUpLeft(x) === y || innerUpLeft(x) === y - 2 || innerUpLeft(x) === y - 1) {
-            return true;
-        }
-    }
-
-    // Upper In Left #5
-    function upperInLeft(x) {
-        return Math.floor(((-71 / 99) * x) + (20719 / 33));
-    }
-
-    if (x > 195 && x < 294 && y < 488 && y > 417) {
-        if (upperInLeft(x) < y) {
-            return true;
-        }
-    }
-
-    // Inner In Left #5
-    function innerInLeft(x) {
-        return Math.floor(((-45 / 62) * x) + (19274 / 31));
-    }
-
-    if (x > 238 && x < 300 && y < 449 && y > 404) {
-        if (innerInLeft(x) === y) {
-            return true;
-        }
-    }
-
-    // Bottom of star
-    if (x === 300 && y === 404) {
-        return true;
-    }
-
-    // Upper In Right #6
-    function upperInRight(x) {
-        return Math.floor(((65 / 89) * x) + (17158 / 89));
-    }
-
-    if (x > 307 && x < 396 && y < 482 && y > 417) {
-        if (upperInRight(x) < y - 1) {
-            return true;
-        }
-    }
-
-    // Inner In Right #6
-    function innerInRight(x) {
-        return Math.floor(((45 / 62) * x) + (5774 / 31));
-    }
-
-    if (x > 300 && x < 362 && y < 449 && y > 404) {
-        if (innerInRight(x) === y) {
-            return true;
-        }
-    }
-
-    // Upper Up Right #7
-    function upperUpRight(x) {
-        return Math.floor(((105 / 34) * x) - (12596 / 17));
-    }
-
-    if (x > 362 && x < 396 && y < 482 && y > 377) {
-        if (upperUpRight(x) === y || upperUpRight(x) > y + 1) {
-            return true;
-        }
-    }
-
-    // Inner Up Right #7
-    function innerUpRight(x) {
-        return Math.floor(((72 / 23) * x) - (16831 / 23));
-    }
-
-    if (x > 351 && x < 374 && y < 439 && y > 367) {
-        if (innerUpRight(x) === y || innerUpRight(x) === y - 1) {
-            return true;
-        }
-    }
-
-    // Upper Down Right #8
-    function upperDownRight(x) {
-        return Math.floor(((-65 / 88) * x) + (27955 / 44));
-    }
-
-    if (x > 366 && x < 454 && y < 365 && y > 300) {
-        if (upperDownRight(x) < y) {
-            return true;
-        }
-    }
-
-    // Inner Down Right #8
-    function innerDownRight(x) {
-        return Math.floor(((-23 / 31) * x) + (19450 / 31));
-    }
-
-    if (x > 351 && x < 413 && y < 367 && y > 321) {
-        if (innerDownRight(x) === y + 1) {
-            return true;
-        }
-    }
-}
 
     insideCircle = function(x, y){
         let x2=300; 
@@ -579,7 +595,6 @@ export default class Game {
         }
 
         if (this.currentLevel === 1 && x < 329 && x > 307 && y < 226 && y > 194 && this.health > 0) {
-            // this.health += 10;
             this.currentLevel = 7;
         }
 
@@ -591,7 +606,6 @@ export default class Game {
         }
 
         if (this.currentLevel === 2 && x < 328 && x > 312 && y < 224 && y > 219 && this.health > 0) {
-            // this.health += 10;
             this.currentLevel = 8;
         }
 
@@ -603,7 +617,6 @@ export default class Game {
         }
 
         if (this.currentLevel === 3 && x < 330 && x > 320 && y < 189 && y > 180 && this.health > 0) {
-            // this.health += 10;
             this.currentLevel = 9;
         }
 
@@ -615,32 +628,32 @@ export default class Game {
         }
 
         if (this.currentLevel === 4 && x < 318 && x > 310 && y < 249 && y > 240 && this.health > 0) {
-            // this.health += 10;
             this.currentLevel++;
         }
 
-        // Lose
+        // Losing screen
         if(this.health <= 0){
             this.currentLevel = 6;
             this.shot.play();
         }
 
+        //starts level 1 
         if(this.currentLevel === 6 && x > 272 && x < 303 && y < 226 && y > 194){
             this.health = 100;
             this.currentLevel = 1;
         }
 
-        // Level 7 passed
+        // Level 2 loading screen
         if (this.currentLevel === 7 && (y === 220 || y === 221 || y === 219) && (x === 285 || x === 286 || x === 284)){
             this.currentLevel = 2;
         }
 
-        // Level 8 passed
+        // Level 3 loading screen
         if (this.currentLevel === 8 && y < 185 && y > 164 && x < 300 && x > 266) {
             this.currentLevel = 3;
         }
 
-        // Level 9 passed
+        // Level 4 loading screen
         if (this.currentLevel === 9 && y < 250 && y > 220 && x < 303 && x > 271) {
             this.currentLevel = 4;
         }
