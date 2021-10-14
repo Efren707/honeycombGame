@@ -44,6 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function updatePosition(e){
         x += e.movementX;
         y += e.movementY;
+
+        if(x > 593){
+            x = 593;
+        }
+
+        if(x < 7){
+            x = 7;
+        }
+
+        if (y > 593) {
+            y = 593;
+        }
+
+        if (y < 7) {
+            y = 7;
+        }
         mouseTracker.textContent = "X position: " + x + ", Y position: " + y;
     }
 
