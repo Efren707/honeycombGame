@@ -1,5 +1,5 @@
-import Game from "./src/game.js";
-import Tracker from "./src/tracker.js";
+import Game from "/src/game.js";
+import Tracker from "/src/tracker.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     let canvas = document.getElementById('gameScreen');
