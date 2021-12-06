@@ -5,8 +5,8 @@ export default class Game {
     constructor(gameWidth, gameHeight){
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
-        this.currentLevel = 4;
-        this.health = 10000;
+        this.currentLevel = 0;
+        this.health = 100;
         this.sound = new Sound("song.mp3");
         this.shot = new Sound('gunshot.mp3');
         this.winSound = new Sound('winsound.mp3');
@@ -373,7 +373,7 @@ export default class Game {
         }
 
         // Inner Straight Left #2
-        if (x < 281 && x > 184 && y === 308) {
+        if (x < 281 && x > 184 && y > 308 && y < 312) {
             return true;
         }
 
@@ -405,7 +405,7 @@ export default class Game {
         }
 
         // Inner Straight Right #9
-        if (x < 417 && x > 319 && y === 308) {
+        if (x < 417 && x > 319 && y > 308 && y < 312) {
             return true;
         }
 
@@ -637,7 +637,7 @@ export default class Game {
             this.health--;
         } 
         
-        if (this.currentLevel === 4 && x > 300 && x < 305 && y < 420 && y > 396) {
+        if (this.currentLevel === 4 && x > 300 && x < 305 && y < 420 && y > 227) {
             this.health = 0;
         }
 
