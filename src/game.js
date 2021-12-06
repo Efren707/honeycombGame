@@ -5,8 +5,8 @@ export default class Game {
     constructor(gameWidth, gameHeight){
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
-        this.currentLevel = 0;
-        this.health = 100;
+        this.currentLevel = 4;
+        this.health = 10000;
         this.sound = new Sound("song.mp3");
         this.shot = new Sound('gunshot.mp3');
         this.winSound = new Sound('winsound.mp3');
@@ -497,7 +497,7 @@ export default class Game {
         }
 
         if (x > 238 && x < 300 && y < 449 && y > 404) {
-            if (innerInLeft(x) === y) {
+            if (innerInLeft(x) > y) {
                 return true;
             }
         }
