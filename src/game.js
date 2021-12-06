@@ -394,7 +394,7 @@ export default class Game {
         }
 
         if (x < 294 && x > 269 && y > 231 && y < 307) {
-            if (innerTopLeft(x) === y || innerTopLeft(x) === y - 1) {
+            if (innerTopLeft(x) < y || innerTopLeft(x) === y - 1) {
                 return true;
             }
         }
@@ -453,7 +453,7 @@ export default class Game {
         }
 
         if (x > 188 && x < 249 && y < 367 && y > 322) {
-            if (innerDownLeft(x) === y + 1) {
+            if (innerDownLeft(x) > y + 1) {
                 return true;
             }
         }
