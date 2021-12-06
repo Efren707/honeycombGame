@@ -426,7 +426,7 @@ export default class Game {
         }
 
         if (x > 307 && x < 332 & y > 232 && y < 306) {
-            if (innerTopRight(x) === y || innerTopRight(x) === y - 1) {
+            if (innerTopRight(x) < y || innerTopRight(x) === y - 1) {
                 return true;
             }
         }
@@ -524,7 +524,7 @@ export default class Game {
         }
 
         if (x > 300 && x < 362 && y < 449 && y > 404) {
-            if (innerInRight(x) === y) {
+            if (innerInRight(x) > y) {
                 return true;
             }
         }
@@ -546,7 +546,7 @@ export default class Game {
         }
 
         if (x > 351 && x < 374 && y < 439 && y > 367) {
-            if (innerUpRight(x) === y || innerUpRight(x) === y - 1) {
+            if (innerUpRight(x) < y || innerUpRight(x) === y - 1) {
                 return true;
             }
         }
@@ -568,7 +568,7 @@ export default class Game {
         }
 
         if (x > 351 && x < 413 && y < 367 && y > 321) {
-            if (innerDownRight(x) === y + 1) {
+            if (innerDownRight(x) < y + 1) {
                 return true;
             }
         }
